@@ -1,0 +1,22 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Project Name</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="#project of projects">
+            <td>{{project.name}}</td>
+            <td>{{project.status}}</td>
+            <td>
+                <a href="#editProject" (click)="editProject(project)">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<project-editor #modal></project-editor>

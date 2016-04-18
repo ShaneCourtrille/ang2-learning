@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>Angular 2 Quickstart</title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        
+        <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+        <script src="node_modules/systemjs/dist/system.src.js"></script>
+        <script src="node_modules/rxjs/bundles/Rx.js"></script>
+        <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.js"></script>
+        
+        
+        <script>
+            System.config({
+                packages: {
+                    app: {
+                        format: 'register',
+                        defaultExtension: 'js'
+                    },
+                    "node_modules/ng2-bs3-modal": {
+                        format: 'register', 
+                        defaultExtension: 'js'
+                }   
+                },
+                 paths: {
+                    'ng2-bs3-modal/ng2-bs3-modal': 'node_modules/ng2-bs3-modal/bundles/ng2-bs3-modal.js'
+                }
+            });
+            
+            System.import('app/boot')
+                .then(null, console.error.bind(console));
+        </script>
+    </head>
+    
+    <body>
+        <my-app>Loading...</my-app>
+    </body>
+</html>
