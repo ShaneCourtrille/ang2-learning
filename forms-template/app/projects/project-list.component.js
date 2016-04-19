@@ -1,4 +1,4 @@
-System.register(['angular2/core', './project', './project-editor.component'], function(exports_1, context_1) {
+System.register(['angular2/core', './project', './project.service', './project-editor.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './project', './project-editor.component'], fu
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, project_1, project_editor_component_1;
+    var core_1, project_1, project_service_1, project_editor_component_1;
     var ProjectListComponent;
     return {
         setters:[
@@ -20,19 +20,31 @@ System.register(['angular2/core', './project', './project-editor.component'], fu
             function (project_1_1) {
                 project_1 = project_1_1;
             },
+            function (project_service_1_1) {
+                project_service_1 = project_service_1_1;
+            },
             function (project_editor_component_1_1) {
                 project_editor_component_1 = project_editor_component_1_1;
             }],
         execute: function() {
             ProjectListComponent = (function () {
-                function ProjectListComponent() {
-                    this.projects = [
-                        new project_1.Project('Form Template Example', 'Complete'),
-                        new project_1.Project('Model Template Example', 'Not Started')
-                    ];
+                function ProjectListComponent(_projectService) {
+                    this._projectService = _projectService;
+                    this.projects = [];
                 }
                 ProjectListComponent.prototype.editProject = function (project) {
+                    this.selectedProject = project;
                     this.modal.open();
+                };
+                ProjectListComponent.prototype.newProject = function () {
+                    var project = new project_1.Project('', 'Not Started');
+                    this.projects.push(project);
+                    this.selectedProject = project;
+                    this.modal.open();
+                };
+                ProjectListComponent.prototype.ngOnInit = function () {
+                    var _this = this;
+                    this._projectService.getProjects().then(function (projects) { return _this.projects = projects; });
                 };
                 __decorate([
                     core_1.ViewChild(project_editor_component_1.ProjectEditorModalComponent), 
@@ -42,9 +54,10 @@ System.register(['angular2/core', './project', './project-editor.component'], fu
                     core_1.Component({
                         selector: 'project-list',
                         templateUrl: '/app/projects/project-list.component.html',
-                        directives: [project_editor_component_1.ProjectEditorModalComponent]
+                        directives: [project_editor_component_1.ProjectEditorModalComponent],
+                        providers: [project_service_1.ProjectService]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [project_service_1.ProjectService])
                 ], ProjectListComponent);
                 return ProjectListComponent;
             }());

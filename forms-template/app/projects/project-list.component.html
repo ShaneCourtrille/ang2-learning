@@ -19,4 +19,5 @@
     </tbody>
 </table>
 
-<project-editor #modal></project-editor>
+<project-editor #modal [project]="selectedProject"></project-editor>
+<button type="button" class="btn btn-default" (click)="newProject()">New Project</button>

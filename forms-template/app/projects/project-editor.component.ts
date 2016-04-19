@@ -1,31 +1,32 @@
-import {Component, ViewChild} from 'angular2/core';
-import { MODAL_DIRECTIVES, ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
+import {Component, ViewChild, Input} from 'angular2/core';
+import {NgForm} from 'angular2/common';
+import {MODAL_DIRECTIVES, ModalComponent} from 'ng2-bs3-modal/ng2-bs3-modal';
+import {Project} from './project';
 
 @Component({
     selector: 'project-editor',
     directives: [MODAL_DIRECTIVES],
-    template: `
-    <modal #modal>
-        <modal-header [show-close]="true">
-            <h4 class="modal-title">Project Editor</h4>
-        </modal-header>
-        <modal-body>
-            Hello World!
-        </modal-body>
-        <modal-footer [show-default-buttons]="true"></modal-footer>
-    </modal>
-    `
+    templateUrl: '/app/projects/project-editor.component.html'
 })
 export class ProjectEditorModalComponent
 {
+    @Input()
+    project: Project;
+    
     @ViewChild('modal')
     modal: ModalComponent;
     
+    statuses: string[] = ['Not Started', 'In Progress', 'Complete'];
+    cancelled: boolean = false;
+    
     open(){
+        cancelled = false;
         this.modal.open();
     }
     
     close(){
         this.modal.close();
     }
+    
+    get diagnostic() { return JSON.stringify(this.project); }
 }

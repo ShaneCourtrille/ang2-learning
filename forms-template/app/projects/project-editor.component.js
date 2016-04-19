@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'ng2-bs3-modal/ng2-bs3-modal'], function(exports_1, context_1) {
+System.register(['angular2/core', 'ng2-bs3-modal/ng2-bs3-modal', './project'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'ng2-bs3-modal/ng2-bs3-modal'], function(expor
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, ng2_bs3_modal_1;
+    var core_1, ng2_bs3_modal_1, project_1;
     var ProjectEditorModalComponent;
     return {
         setters:[
@@ -19,17 +19,32 @@ System.register(['angular2/core', 'ng2-bs3-modal/ng2-bs3-modal'], function(expor
             },
             function (ng2_bs3_modal_1_1) {
                 ng2_bs3_modal_1 = ng2_bs3_modal_1_1;
+            },
+            function (project_1_1) {
+                project_1 = project_1_1;
             }],
         execute: function() {
             ProjectEditorModalComponent = (function () {
                 function ProjectEditorModalComponent() {
+                    this.statuses = ['Not Started', 'In Progress', 'Complete'];
+                    this.cancelled = false;
                 }
                 ProjectEditorModalComponent.prototype.open = function () {
+                    cancelled = false;
                     this.modal.open();
                 };
                 ProjectEditorModalComponent.prototype.close = function () {
                     this.modal.close();
                 };
+                Object.defineProperty(ProjectEditorModalComponent.prototype, "diagnostic", {
+                    get: function () { return JSON.stringify(this.project); },
+                    enumerable: true,
+                    configurable: true
+                });
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', project_1.Project)
+                ], ProjectEditorModalComponent.prototype, "project", void 0);
                 __decorate([
                     core_1.ViewChild('modal'), 
                     __metadata('design:type', ng2_bs3_modal_1.ModalComponent)
@@ -38,7 +53,7 @@ System.register(['angular2/core', 'ng2-bs3-modal/ng2-bs3-modal'], function(expor
                     core_1.Component({
                         selector: 'project-editor',
                         directives: [ng2_bs3_modal_1.MODAL_DIRECTIVES],
-                        template: "\n    <modal #modal>\n        <modal-header [show-close]=\"true\">\n            <h4 class=\"modal-title\">Project Editor</h4>\n        </modal-header>\n        <modal-body>\n            Hello World!\n        </modal-body>\n        <modal-footer [show-default-buttons]=\"true\"></modal-footer>\n    </modal>\n    "
+                        templateUrl: '/app/projects/project-editor.component.html'
                     }), 
                     __metadata('design:paramtypes', [])
                 ], ProjectEditorModalComponent);
