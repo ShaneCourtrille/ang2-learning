@@ -30,7 +30,7 @@ System.register(['angular2/core', 'ng2-bs3-modal/ng2-bs3-modal', './project'], f
                     this.cancelled = false;
                 }
                 ProjectEditorModalComponent.prototype.open = function () {
-                    cancelled = false;
+                    this.cancelled = false;
                     this.modal.open();
                 };
                 ProjectEditorModalComponent.prototype.close = function () {

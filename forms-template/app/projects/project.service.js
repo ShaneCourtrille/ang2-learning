@@ -23,9 +23,21 @@ System.register(['angular2/core', './mock-projects'], function(exports_1, contex
         execute: function() {
             ProjectService = (function () {
                 function ProjectService() {
+                    console.log('Initializing service projects');
+                    this._projects = mock_projects_1.PROJECTS.slice();
                 }
                 ProjectService.prototype.getProjects = function () {
-                    return Promise.resolve(mock_projects_1.PROJECTS);
+                    console.log('Getting projects');
+                    return Promise.resolve(this._projects);
+                };
+                ProjectService.prototype.saveProject = function (project) {
+                    if (project.id == -1) {
+                        this._projects.push(project);
+                    }
+                    else {
+                        var idx = this._projects.findIndex(function (prj) { return project.id == prj.id; });
+                        this._projects[idx] = project;
+                    }
                 };
                 ProjectService = __decorate([
                     core_1.Injectable(), 

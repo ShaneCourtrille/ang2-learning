@@ -20,13 +20,14 @@ export class ProjectEditorModalComponent
     cancelled: boolean = false;
     
     open(){
-        cancelled = false;
+        this.cancelled = false;
         this.modal.open();
     }
     
     close(){
         this.modal.close();
     }
+    
     
     get diagnostic() { return JSON.stringify(this.project); }
 }

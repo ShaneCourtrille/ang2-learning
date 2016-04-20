@@ -19,20 +19,31 @@ export class ProjectListComponent implements OnInit {
     constructor(private _projectService: ProjectService) { }
     
     editProject(project: Project) {
-        this.selectedProject = project;
+        var projectToEdit = Object.assign({}, project)
+        
+        this.selectedProject = projectToEdit;
         this.modal.open();
     }
     
     newProject() {
-        let project = new Project('', 'Not Started');
-        
-        this.projects.push(project);
+        let project = new Project(-1, '', 'Not Started');
         
         this.selectedProject = project;
         this.modal.open();
     }
     
-    ngOnInit() {
+    saveProject(project: Project) {
+        this._projectService.saveProject(project);
+        
+        this._refreshProjectList();
+    }
+    
+    private _refreshProjectList()
+    {
         this._projectService.getProjects().then(projects => this.projects = projects);
+    }
+    
+    ngOnInit() {
+        this._refreshProjectList();
     }
 }

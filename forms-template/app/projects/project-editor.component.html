@@ -1,4 +1,4 @@
-<modal #modal>
+<modal #modal (onDismiss)="dismissed()">
     <div *ngIf="project">
         <modal-header [show-close]="true">
             <h4 class="modal-title">Edit {{project.name}}</h4>

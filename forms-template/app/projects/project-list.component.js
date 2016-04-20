@@ -33,18 +33,25 @@ System.register(['angular2/core', './project', './project.service', './project-e
                     this.projects = [];
                 }
                 ProjectListComponent.prototype.editProject = function (project) {
-                    this.selectedProject = project;
+                    var projectToEdit = Object.assign({}, project);
+                    this.selectedProject = projectToEdit;
                     this.modal.open();
                 };
                 ProjectListComponent.prototype.newProject = function () {
-                    var project = new project_1.Project('', 'Not Started');
-                    this.projects.push(project);
+                    var project = new project_1.Project(-1, '', 'Not Started');
                     this.selectedProject = project;
                     this.modal.open();
                 };
-                ProjectListComponent.prototype.ngOnInit = function () {
+                ProjectListComponent.prototype.saveProject = function (project) {
+                    this._projectService.saveProject(project);
+                    this._refreshProjectList();
+                };
+                ProjectListComponent.prototype._refreshProjectList = function () {
                     var _this = this;
                     this._projectService.getProjects().then(function (projects) { return _this.projects = projects; });
+                };
+                ProjectListComponent.prototype.ngOnInit = function () {
+                    this._refreshProjectList();
                 };
                 __decorate([
                     core_1.ViewChild(project_editor_component_1.ProjectEditorModalComponent), 

@@ -1,8 +1,8 @@
 import {Project} from './project';
 
 export var PROJECTS: Project[] = [
-        new Project('Form Template Example', 'Complete'),
-        new Project('Model Template Example', 'Not Started')
+        new Project(1, 'Form Template Example', 'Complete'),
+        new Project(2, 'Model Template Example', 'Not Started')
     ];
     
     
