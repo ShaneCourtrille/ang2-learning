@@ -31,7 +31,7 @@ export class ProjectEditorModalComponent implements OnInit
     }
     
     ngOnInit() {
-        if(this.project.id == -1
+        if(this.project.id == -1)
         {
             this.saveAction = "Create";
         } else {
