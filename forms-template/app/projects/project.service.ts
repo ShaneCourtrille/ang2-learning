@@ -21,6 +21,7 @@ export class ProjectService {
     saveProject(project: Project) {
         if(project.id == -1)
         {
+            project.id = this._projects.length + 1;
             this._projects.push(project);
         }
         else 

@@ -1,4 +1,4 @@
-import {Component, ViewChild, Input} from 'angular2/core';
+import {Component, ViewChild, Input, EventEmitter, Output, OnInit} from 'angular2/core';
 import {NgForm} from 'angular2/common';
 import {MODAL_DIRECTIVES, ModalComponent} from 'ng2-bs3-modal/ng2-bs3-modal';
 import {Project} from './project';
@@ -8,7 +8,7 @@ import {Project} from './project';
     directives: [MODAL_DIRECTIVES],
     templateUrl: '/app/projects/project-editor.component.html'
 })
-export class ProjectEditorModalComponent
+export class ProjectEditorModalComponent implements OnInit
 {
     @Input()
     project: Project;
@@ -16,18 +16,29 @@ export class ProjectEditorModalComponent
     @ViewChild('modal')
     modal: ModalComponent;
     
-    statuses: string[] = ['Not Started', 'In Progress', 'Complete'];
-    cancelled: boolean = false;
+    saveAction: string;
     
-    open(){
-        this.cancelled = false;
+    @Output() saveRequest:EventEmitter<Project> = new EventEmitter<Project>();
+    
+    statuses: string[] = ['Not Started', 'In Progress', 'Complete'];
+    
+    open() {
         this.modal.open();
     }
     
-    close(){
-        this.modal.close();
+    closed() {
+        this.saveRequest.emit(this.project);
     }
     
+    ngOnInit() {
+        if(this.project.id == -1
+        {
+            this.saveAction = "Create";
+        } else {
+            this.saveAction = "Save";
+        }
+    }
     
-    get diagnostic() { return JSON.stringify(this.project); }
+    dismissed() {
+    }
 }
