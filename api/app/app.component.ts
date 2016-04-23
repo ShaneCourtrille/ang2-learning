@@ -1,8 +1,11 @@
-import {Component} from 'angular2/core'
+import {Component} from 'angular2/core';
+import {Entity} from './entity';
+import {OnChangeComponent} from './on-change.component';
 
 @Component({
     selector: 'my-app',
-    template: '<h1>My First Angular 2 App<h1>'
+    directives: [OnChangeComponent],
+    templateUrl: '/app/app.component.html'
 })
-
-export class AppComponent { }
+export class AppComponent {
+}
