@@ -1,4 +1,4 @@
-<modal #modal (onDismiss)="dismissed()">
+<modal #modal (onClose)="closed()" (onDismiss)="dismissed()">
     <div *ngIf="project">
         <modal-header [show-close]="true">
             <h4 class="modal-title">{{title}}</h4>

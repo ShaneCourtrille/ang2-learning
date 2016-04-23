@@ -19,13 +19,15 @@ export class ProjectEditorModalComponent implements OnChanges
     saveAction: string = 'Save';
     title: string;
     
-    @Output() saveRequest:EventEmitter<Project> = new EventEmitter<Project>();
+    @Output() 
+    saveRequest:EventEmitter<Project> = new EventEmitter<Project>();
     
     statuses: string[] = ['Not Started', 'In Progress', 'Complete'];
     
     closed() {
         console.log('closed');
         this.saveRequest.emit(this.project);
+        this.project = null;
     }
     
     dismissed() {
@@ -36,7 +38,10 @@ export class ProjectEditorModalComponent implements OnChanges
     }
     
     ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
-        changes
+        if(changes['project'] !== null)
+        {
+            this._setTitle();
+        }
     }
     
     _setTitle() {

@@ -34,6 +34,8 @@ export class ProjectListComponent implements OnInit {
     }
     
     saveProject(project: Project) {
+        console.log('save');
+        console.log(project);
         this._projectService.saveProject(project);
         
         this._refreshProjectList();
