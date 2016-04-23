@@ -1,4 +1,4 @@
-import {Component,Input,  OnChanges, SimpleChange} from 'angular2/core';
+import {Component, Input, OnChanges, SimpleChange} from 'angular2/core';
 import {Entity} from './entity';
 
 @Component({
@@ -19,6 +19,7 @@ export class OnChangeChildComponent implements OnChanges
     
     ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
         console.log(changes['textValue']);
+        //entityValue will not get updated as OnChange doesn't detect deep changes 
         console.log(changes['entityValue']);
         console.log(changes['numericValue']);
     }   

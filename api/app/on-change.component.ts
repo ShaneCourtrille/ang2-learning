@@ -19,6 +19,6 @@ export class OnChangeComponent {
     changeValues() {
         this.textValue = this.textValue + '1';
         this.numericValue = this.numericValue + 1;
-        // this.entityValue.name = this.entityValue.name + '1';
+        this.entityValue.name = this.entityValue.name + '1';
     }        
 }
