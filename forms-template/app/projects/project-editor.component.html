@@ -1,7 +1,7 @@
 <modal #modal (onDismiss)="dismissed()">
     <div *ngIf="project">
         <modal-header [show-close]="true">
-            <h4 class="modal-title">Edit {{project.name}}</h4>
+            <h4 class="modal-title">{{title}}</h4>
         </modal-header>
         <modal-body>
             <div class="container">
@@ -26,6 +26,9 @@
                 </div>
             </div>
         </modal-body>
-        <modal-footer [show-default-buttons]="true"></modal-footer>
+        <modal-footer>
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.dismiss()">Cancel</button>
+            <button type="button" class="btn btn-primary" (click)="modal.close()">{{saveAction}}</button>
+        </modal-footer>
     </div>
 </modal>

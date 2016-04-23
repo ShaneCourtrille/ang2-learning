@@ -1,7 +1,8 @@
 import {Component, ViewChild, OnInit} from 'angular2/core';
 import {Project} from './project';
 import {ProjectService} from './project.service';
-import {ProjectEditorModalComponent} from './project-editor.component'
+import {ProjectEditorModalComponent} from './project-editor.component';
+import {ProjectCreatorModalComponent} from './project-creator.modal-component';
 
 @Component({
     selector: 'project-list',
@@ -11,7 +12,10 @@ import {ProjectEditorModalComponent} from './project-editor.component'
 })
 export class ProjectListComponent implements OnInit { 
     @ViewChild(ProjectEditorModalComponent)
-    modal: ProjectEditorModalComponent;
+    editModal: ProjectEditorModalComponent;
+    
+    @ViewChild(ProjectCreatorModalComponent)
+    createModal: ProjectCreatorModalComponent
     
     projects: Project[] = [];
     selectedProject: Project;
@@ -22,14 +26,11 @@ export class ProjectListComponent implements OnInit {
         var projectToEdit = Object.assign({}, project)
         
         this.selectedProject = projectToEdit;
-        this.modal.open();
+        this.editModal.open();
     }
     
     newProject() {
-        let project = new Project(-1, '', 'Not Started');
-        
-        this.selectedProject = project;
-        this.modal.open();
+        this.createModal.open();
     }
     
     saveProject(project: Project) {

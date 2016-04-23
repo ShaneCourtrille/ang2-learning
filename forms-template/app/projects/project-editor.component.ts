@@ -1,4 +1,4 @@
-import {Component, ViewChild, Input, EventEmitter, Output, OnInit} from 'angular2/core';
+import {Component, ViewChild, Input, EventEmitter, Output, OnInit, OnChanges, SimpleChange} from 'angular2/core';
 import {NgForm} from 'angular2/common';
 import {MODAL_DIRECTIVES, ModalComponent} from 'ng2-bs3-modal/ng2-bs3-modal';
 import {Project} from './project';
@@ -8,7 +8,7 @@ import {Project} from './project';
     directives: [MODAL_DIRECTIVES],
     templateUrl: '/app/projects/project-editor.component.html'
 })
-export class ProjectEditorModalComponent implements OnInit
+export class ProjectEditorModalComponent implements OnChanges
 {
     @Input()
     project: Project;
@@ -16,29 +16,30 @@ export class ProjectEditorModalComponent implements OnInit
     @ViewChild('modal')
     modal: ModalComponent;
     
-    saveAction: string;
+    saveAction: string = 'Save';
+    title: string;
     
     @Output() saveRequest:EventEmitter<Project> = new EventEmitter<Project>();
     
     statuses: string[] = ['Not Started', 'In Progress', 'Complete'];
     
+    closed() {
+        console.log('closed');
+        this.saveRequest.emit(this.project);
+    }
+    
+    dismissed() {
+    }
+    
     open() {
         this.modal.open();
     }
     
-    closed() {
-        this.saveRequest.emit(this.project);
+    ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
+        changes
     }
     
-    ngOnInit() {
-        if(this.project.id == -1)
-        {
-            this.saveAction = "Create";
-        } else {
-            this.saveAction = "Save";
-        }
-    }
-    
-    dismissed() {
+    _setTitle() {
+        this.title = this.project && `Editing ${this.project.name}` || 'Editing';
     }
 }

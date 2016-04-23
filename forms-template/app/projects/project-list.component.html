@@ -19,9 +19,10 @@
     </tbody>
 </table>
 
-<div *ngIf="selectedProject">
-    <project-editor #modal [project]="selectedProject" (saveRequest)="saveProject($event)">
-    </project-editor>
-</div>
+<project-editor #modal [project]="selectedProject" (saveRequest)="saveProject($event)">
+</project-editor>
+
+<project-creator (saveRequest)="saveProject($event)">
+</project-creator>
     
 <button type="button" class="btn btn-default" (click)="newProject()">New Project</button>
