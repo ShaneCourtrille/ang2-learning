@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, SimpleChange} from 'angular2/core';
+import {Component, Input, OnChanges, SimpleChange, ChangeDetectionStrategy} from 'angular2/core';
 import {Entity} from './entity';
 
 @Component({
@@ -7,7 +7,9 @@ import {Entity} from './entity';
     <div>Text Value: {{textValue}}</div>
     <div>Object Value: {{entityValue}}</div>
     <div>Numeric Value: {{numericValue}}</div>
-    `
+    `,
+    // tells Ang2 that this component only changes when an @Input changes
+    changeDetection: ChangeDetectionStrategy.OnPush 
 })
 export class OnChangeChildComponent implements OnChanges
 {
