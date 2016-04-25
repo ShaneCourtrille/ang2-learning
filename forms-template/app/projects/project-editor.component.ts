@@ -11,7 +11,7 @@ import {Project} from './project';
 export class ProjectEditorModalComponent implements OnChanges
 {
     @Input()
-    project: Project;
+    model: Project;
     
     @ViewChild('modal')
     modal: ModalComponent;
@@ -26,8 +26,7 @@ export class ProjectEditorModalComponent implements OnChanges
     
     closed() {
         console.log('closed');
-        this.saveRequest.emit(this.project);
-        this.project = null;
+        this.saveRequest.emit(this.model);
     }
     
     dismissed() {
@@ -41,6 +40,7 @@ export class ProjectEditorModalComponent implements OnChanges
         if(changes['project'] !== null)
         {
             this._setTitle();
+            this.model = changes['project'];
         }
     }
     

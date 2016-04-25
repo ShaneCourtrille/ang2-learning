@@ -19,7 +19,7 @@
     </tbody>
 </table>
 
-<project-editor #modal [project]="selectedProject" (saveRequest)="saveProject($event)">
+<project-editor [model]="selectedProject" (saveRequest)="saveProject($event)">
 </project-editor>
 
 <project-creator (saveRequest)="saveProject($event)">

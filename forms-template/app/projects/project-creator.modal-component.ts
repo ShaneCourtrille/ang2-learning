@@ -15,8 +15,8 @@ export class ProjectCreatorModalComponent
     
     @Output() saveRequest:EventEmitter<Project> = new EventEmitter<Project>();
     
-    project: Project = new Project(-1, '', '');
     statuses: string[] = ['Not Started', 'In Progress', 'Complete'];
+    model = new Project(-1, '', this.statuses[0]);
     saveAction: string = 'Create';
     title: string = 'Create New Project';
     
@@ -26,6 +26,6 @@ export class ProjectCreatorModalComponent
     
     closed() {
         console.log('closed');
-        this.saveRequest.emit(this.project);
+        this.saveRequest.emit(this.model);
     }
 }

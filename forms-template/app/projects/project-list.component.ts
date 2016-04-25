@@ -7,7 +7,7 @@ import {ProjectCreatorModalComponent} from './project-creator.modal-component';
 @Component({
     selector: 'project-list',
     templateUrl: '/app/projects/project-list.component.html',
-    directives: [ProjectEditorModalComponent],
+    directives: [ProjectEditorModalComponent, ProjectCreatorModalComponent],
     providers: [ProjectService]
 })
 export class ProjectListComponent implements OnInit { 
